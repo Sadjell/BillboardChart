@@ -1,9 +1,11 @@
 package com.example.billboardchart;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,7 +22,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    private ShareActionProvider provider;
+    //private ShareActionProvider provider;
 
 
     @Override
@@ -30,20 +32,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        //provider = (ShareActionProvider) MenuItemCompat.getActionProvider(menu.findItem(R.id.share));
+        //Log.v("share", String.valueOf(provider));
+        return super.onCreateOptionsMenu(menu);
+    }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         switch(id){
             case R.id.settings:
                 View view = this.getWindow().getDecorView();
-                ColorDrawable viewColor = (ColorDrawable) view.getBackground();
-                int colorId = viewColor.getColor();
-                if(colorId == R.color.white){
-                    view.setBackgroundResource(R.color.purple_200);
-                }
-                else if (colorId == R.color.purple_200){
-                    view.setBackgroundResource(R.color.purple_200);
-                }
+                view.setBackgroundResource(R.color.purple_200);
                 break;
             case R.id.help:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -55,8 +59,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.share:
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_TEXT, "This is a message for you");
-                provider.setShareIntent(intent);
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Check out our app!");
+                intent.putExtra(Intent.EXTRA_TEXT, "Our app link here");
+                startActivity(Intent.createChooser(intent, "Share via" ));
                 break;
             default:
                 return super.onOptionsItemSelected(item);
@@ -66,12 +71,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        provider = (ShareActionProvider) MenuItemCompat.getActionProvider(menu.findItem(R.id.share));
-        return super.onCreateOptionsMenu(menu);
-    }
 
     public void validate(View view) {
         Spinner spin = (Spinner) findViewById(R.id.category);
