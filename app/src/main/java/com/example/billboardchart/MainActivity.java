@@ -22,8 +22,6 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    //private ShareActionProvider provider;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +29,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-
-
+   //method to connect the elements in the menu to the layout
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
+    //method to register selected item and what happens when they are selected
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -69,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    //method that specify which activity comes one depending on the spinner's selection
     public void validate(View view) {
         Spinner spin = (Spinner) findViewById(R.id.category);
         String chosenValue = spin.getSelectedItem().toString();

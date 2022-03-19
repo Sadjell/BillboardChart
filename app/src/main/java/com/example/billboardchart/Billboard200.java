@@ -39,10 +39,8 @@ public class Billboard200 extends AppCompatActivity {
         textResult12 = findViewById(R.id.BillboardTextWeeks2);
 
 
-
+        //API connection
         OkHttpClient client = new OkHttpClient();
-
-
         Request request = new Request.Builder()
                 .url("https://billboard-api2.p.rapidapi.com/billboard-200?date=2022-03-01&range=1-5")
                 .get()
@@ -51,6 +49,8 @@ public class Billboard200 extends AppCompatActivity {
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
+
+            //Parsing of the JSON file
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();

@@ -36,10 +36,8 @@ public class Artist100 extends AppCompatActivity {
         textResult11 = findViewById(R.id.ArtistTextPeak2);
         textResult12 = findViewById(R.id.ArtistTextWeeks2);
 
-
+        //API connection
         OkHttpClient client = new OkHttpClient();
-
-
         Request request = new Request.Builder()
                 .url("https://billboard-api2.p.rapidapi.com/artist-100?range=1-5&date=2022-03-01")
                 .get()
@@ -48,6 +46,8 @@ public class Artist100 extends AppCompatActivity {
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
+
+            //Parsing of the JSON file
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();

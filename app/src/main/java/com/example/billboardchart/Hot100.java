@@ -53,10 +53,8 @@ public class Hot100 extends AppCompatActivity {
         textResult15 = findViewById(R.id.hotTextWeeks2);
 
 
+        //API connection
         OkHttpClient client = new OkHttpClient();
-
-//        String url = "https://billboard-api2.p.rapidapi.com/hot-100?range=1-5&date=2022-03-01";
-
         Request request = new Request.Builder()
                 .url("https://billboard-api2.p.rapidapi.com/hot-100?range=1-5&date=2022-03-01")
                 .get()
@@ -65,6 +63,8 @@ public class Hot100 extends AppCompatActivity {
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
+
+            //Parsing of the JSON file
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
