@@ -36,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
-        //provider = (ShareActionProvider) MenuItemCompat.getActionProvider(menu.findItem(R.id.share));
-        //Log.v("share", String.valueOf(provider));
         return super.onCreateOptionsMenu(menu);
     }
 
